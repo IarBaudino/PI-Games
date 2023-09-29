@@ -14,30 +14,34 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    
-    plataforms: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    
-    image: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    
-    release_date: {
-      type: DataTypes.STRING,
+
+    platforms: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
-    
+
+    image: {
+      type: DataTypes.STRING,     
+      defaultValue: 'https://cloudfront-us-east-1.images.arcpublishing.com/infobae/26TZ62LNNNHFLM5YYVOXEHM7HQ.jpg',
+    },
+
+
+    released: {
+      type: DataTypes.DATEONLY,
+      validate: {
+        isDate: true,
+      },
+
+    },
+
     rating: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
   },
-  { timestamps: false }
+    { timestamps: false }
   );
 };

@@ -2,9 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -30,7 +28,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame, Genres } = sequelize.models;
+const { Videogame, Genres } = sequelize.models
 
 Videogame.belongsToMany(Genres, {through: "videogames_genres"})
 Genres.belongsToMany(Videogame, {through: "videogames_genres"})
