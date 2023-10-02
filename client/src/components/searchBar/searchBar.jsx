@@ -1,0 +1,1 @@
+/* SearchBar: un input de búsqueda para encontrar videojuegos por nombre. */

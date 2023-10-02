@@ -32,7 +32,7 @@ const getAllGames = async (name) => {
     }
     const allVideoGames = gamesDb.concat(gamesApi)
     const games = mapGames(allVideoGames) // aca utilizo mi funcion aux para mapear los games y solo traer la info que quiero
-    /* console.log(games) */
+
 
     if (games.length === 0 && name !== undefined) {
         throw new Error("There is no videogame!!!")
@@ -55,8 +55,6 @@ const getGameById = async (id, source) => {
 const createGameDb = async (name, description, image, genres, platforms, released, rating) => {
     const newGameDb = await Videogame.create({ name, description, image, platforms, released, rating });
 
-    //const gameGenres = [];
-
     const genre = await Genres.findAll({
         where: {
            name: genres
@@ -64,6 +62,8 @@ const createGameDb = async (name, description, image, genres, platforms, release
     })
     // Asociar los géneros encontrados al juego
     await newGameDb.addGenres(genre);
+
+    //garantiza que el objeto newGameDb contenga los géneros asociados al juego después de que se hayan realizado las operaciones de creación y asociación en la base de datos
     await newGameDb.reload({
         include: {
             model: Genres,
