@@ -26,7 +26,7 @@ const getAllGames = async (name) => {
         gamesApi = response.data.results;
     } else {
         gamesDb = await Videogame.findAll({ include: Genres });
-        console.log(gamesDb);
+        
         const response = await axios.get(`${URL}?key=${API_KEY}`);
         gamesApi = response.data.results;
     }
