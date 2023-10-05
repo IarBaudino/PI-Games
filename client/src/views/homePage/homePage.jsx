@@ -9,27 +9,31 @@ Cuando se le hace click a una Card deberá redirigir al detalle de ese videojueg
 Botones/Opciones para filtrar por género, y por si su origen es de la API o de la base de datos (creados por nosotros desde el formulario).
 Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating.
 Paginado: el listado de videojuegos se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 15 videojuegos por página. */
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useEffect } from 'react';
 import { getGames } from "../../redux/actions/actions";
-import NavBar from "../../components/navBar/navBar";
+
 import Cards from "../../components/cards/cards";
-import SearchBar from "../../components/searchBar/searchBar";
+
+import Style from "../homePage/homePage.module.css"
+
 
 function HomePage() {
     const dispatch = useDispatch();
-    const allGames = useSelector((state) => state.allGames);
+    /* const allGames = useSelector(state => state.allVideogames); */
+
 
     useEffect(() => {
         dispatch(getGames());
     }, [dispatch]);
-
+    
     return (
-        <div>
-            <h2>este es el home</h2>
-            <NavBar />
-            <SearchBar />
-            <Cards allGames={allGames} />
+        <div className={Style.home}>
+            
+            <h2 className={Style.titleone}>bienvenides</h2>
+            <div className="cardcontainer">
+                <Cards />
+            </div>
         </div>
     );
 }

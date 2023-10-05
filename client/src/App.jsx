@@ -7,7 +7,7 @@ import LandingPage from './views/landingPage/landingPage';
 import HomePage from './views/homePage/homePage';
 import DetailPage from './views/detailPage/detailPage';
 import FormPage from './views/formPage/formPage';
-//import Nav from './components/nav/nav';
+import NavBar from '../src/components/navBar/navBar';
 
 
 const App = () => {
@@ -18,6 +18,8 @@ const App = () => {
   return (
     <>
       {pathname !== '/'  }
+      <NavBar />
+            
       <Routes>
         <Route exact path="/home" element={<HomePage/>} />
         <Route path="/" element={<LandingPage />} />

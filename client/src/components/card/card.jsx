@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom"
+import style from "../card/card.module.css"
 
-
-function Card({ game }) {
+function Card(game) {
     const {id, image, name, genre } = game;
 
     return (
-        <div>
+        <div className={style.cardcontainer}>
             <Link to={`/home/${id}`}>
-                <h2>este es el card</h2>
-                <h2>Image: {image} </h2>
-                <p>Name: {name} </p>
-                <p>Genre: {genre} </p>
+                
+                <img className={style.img} src={image} alt={name}/>
+                <h2>name: {name}</h2>
+                <h2>Genre: {genre} </h2>
             </Link>
         </div>
     )
