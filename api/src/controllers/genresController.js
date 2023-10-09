@@ -9,7 +9,7 @@ const { API_KEY } = process.env
 
 const getAllGenres = async () => {
     const allGenres = await Genres.findAll();
-    const genresFromApi = await axios.get(`${URL}/${id}?key=${API_KEY}`);
+    const genresFromApi = await axios.get(`${URL}?key=${API_KEY}`);
     const genresApi = genresFromApi.data.results;
 
     genresApi.forEach(async (genre) => {

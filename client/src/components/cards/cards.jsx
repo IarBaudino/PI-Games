@@ -13,7 +13,7 @@ function Cards() {
                     key={game.id}
                     name={game.name}
                     image={game.image}
-                    genre={game.genre}
+                    genres={game.genres}
                      />
             ))}
         </div>

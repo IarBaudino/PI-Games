@@ -1,32 +1,84 @@
 
 
-import axios from "axios";
+import axios, { all } from "axios";
 
 export const GET_GAMES = "GET_GAMES"
 export const GET_GAME_ID = "GET_GAME_ID"
+export const GET_GENRES = "GET_GENRES"
+export const GET_PLATFORMS = "GET_PLATFORMS"
 
+export function getGames() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/games");
+      const videoGames = response.data
+      return dispatch({
+        type: GET_GAMES,
+        payload: videoGames
+      })
+    } catch (error) {
 
-export function getGames(){
-    return async function(dispatch){
-
-        const response = await axios.get("http://localhost:3001/games");
-        const videoGames = response.data
-        return dispatch ({
-            type: GET_GAMES,
-            payload:videoGames
-        })
     }
+
+  }
 }
 
 
 export function getById(id) {
-    return async function (dispatch) {
-      const response = await axios.get(`http://localhost:3001/games/${id}`);
-      const videoGameID = response.data;
-      return dispatch({
-        type: GET_GAME_ID,
-        payload: videoGameID,
-      });
-    };
+  return async function (dispatch) {
+    try{
+    const response = await axios.get(`http://localhost:3001/games/${id}`);
+    const videoGameID = response.data;
+    return dispatch({
+      type: GET_GAME_ID,
+      payload: videoGameID,
+    });
+  }catch (error){
+    alert(error.response.data.error)
   }
-  
+  };
+}
+
+export function getGenres() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/genres");
+      const allGenres = response.data
+      return dispatch({
+        type: GET_GENRES,
+        payload: allGenres
+      })
+    } catch (error) {
+      alert(error.response.data.error)
+    }
+
+  }
+}
+
+export function getPlatforms() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/platforms");
+      const allPlatforms = response.data
+      return dispatch({
+        type: GET_PLATFORMS,
+        payload: allPlatforms
+      })
+    } catch (error) {
+      alert(error.response.data.error)
+    }
+
+  }
+}
+
+export function postGame(state) {
+  return async function (dispatch) {
+    try {
+       await axios.post("http://localhost:3001/games", state)
+      alert("Juego creado con exito!")
+    } catch (error) {
+      alert(error.response.data.error)
+    }
+
+  }
+}

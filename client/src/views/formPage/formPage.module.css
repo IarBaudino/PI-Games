@@ -1,0 +1,46 @@
+.formContainer {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .inputText {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  
+  .checkboxGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+  
+  /* Estilos para alinear y separar los campos en una columna */
+  .label {
+    margin-top: 10px;
+  }
+  
+  .checkboxGroup {
+    flex-direction: column;
+  }

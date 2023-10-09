@@ -22,7 +22,7 @@ const getAllGames = async (name) => {
             limit: 15
         }); // esto limita los resultados a 15
         let nameToLower = name.toLowerCase();
-        const response = await axios.get(`${URL}?key=${API_KEY}&search=${nameToLower}&page_size=15`);
+        const response = await axios.get(`${URL}?key=${API_KEY}&search=${nameToLower}&page_size=100`);
         gamesApi = response.data.results;
     } else {
         gamesDb = await Videogame.findAll({ include: Genres });
