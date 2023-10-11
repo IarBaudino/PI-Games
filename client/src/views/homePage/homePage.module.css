@@ -1,46 +1,27 @@
-body {
-    border: solid rgb(214, 8, 8);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh; /* Asegura que el cuerpo tenga al menos el 100% del viewport height */
-    margin: 10px;
-    padding: 0;
-    overflow:auto;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(
-        to left,
-        rgba(7, 27, 82, 1) 0%,
-        rgba(0, 128, 128, 1) 100%
-    );
+ .background {
+    overflow: auto;
+    height: 100%;
+  }
+ 
+  .home {
+    overflow: auto;
+    height: 100%;
+    padding: 20px; 
+  }
+  
+  .titleone {
+    margin-top: 1px;
+    margin-bottom: 2px;
     text-align: center;
-}
-
-.home {
-    border: solid rgb(87, 8, 214);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Establece una altura mínima del 100% del viewport height */
-    overflow:visible; /* Si se necesita desplazamiento vertical */
-    padding: 1%; /* Añade un poco de espacio alrededor del contenedor */
-}
-
-.titleone {
-    border:solid white;
-    margin-top: 1px; /* Reduzco el margen superior */
-    margin-bottom: 2px; /* Reduzco el margen inferior */
-    font-size: 36px; /* Reduzco el tamaño del título */
+    font-size: 36px;
     color: #0ccac4;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+  }
+  
+  .cardcontainer {
+    max-width: 100%; 
+    margin: 0 auto; 
+    overflow: auto;
+  }
 
-/* Ajustar el espacio vertical entre las tarjetas */
-.cardcontainer {
-    border: solid rgb(8, 22, 214);
-    margin-bottom: 10px; /* Espacio entre las tarjetas */
-    /* Otras propiedades de estilo de las tarjetas */
-}
+  

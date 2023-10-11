@@ -1,17 +1,16 @@
 .cardslist {
-    border:solid red;
     display: flex;
     height:800px;
     width: 90vw;
-    flex-wrap: wrap; /* Las tarjetas se envolverán a la siguiente fila si no hay suficiente espacio horizontal */
-    justify-content: space-between; /* Espacio entre las tarjetas y en los bordes izquierdo y derecho */
-    padding: 20px; /* Añade un poco de espacio alrededor del contenedor */
+    overflow: auto;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    padding: 20px; 
 }
 
 .cardcontainer {
-    border: solid blue;
     background-color: #95dada;
-    height: 150px;
+    height:250px;
     width: 250px;
     border: 1px solid grey;
     border-radius: 15px;
@@ -21,6 +20,6 @@
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
-    margin-bottom: 20px; /* Espacio entre las tarjetas */
-    flex-grow: 1; /* Las tarjetas ocuparán todo el espacio horizontal disponible */
+    margin-bottom: 20px; 
+    flex-grow: 1; 
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms, postGame } from "../../redux/actions/actions";
+import style from "../formPage/formPage.module.css";
 
 function FormPage() {
   const dispatch = useDispatch();
@@ -66,31 +67,58 @@ function FormPage() {
   // Función de validación
   const validate = (name, value) => {
     switch (name) {
-        case "name":
-            if (value === "") {
-              setErrors({ ...errors, name: "This can't be empty!" });
-            } else if (value.length > 30) {
-              setErrors({ ...errors, name: "Too long! Less than 30 characters." });
-            } else if (!/^[A-Za-z\s]+$/.test(value)) {
-              setErrors({ ...errors, name: "Only letters and spaces are allowed." });
-            } else {
-              setErrors({ ...errors, name: "" });
-            }
-            break;
-            case "description":
-                if (value === "") {
-                  setErrors({ ...errors, description: "This can't be empty!" });
-                } else if (value.length > 1000) {
-                  setErrors({ ...errors, description: "Description must be 1000 characters or less." });
-                } else {
-                  setErrors({ ...errors, description: "" });
-                }
-                break;
+      case "name":
+        if (value === "") {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            name: "This can't be empty!",
+          }));
+        } else if (value.length > 30) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            name: "Too long! Less than 30 characters.",
+          }));
+        } else if (!/^[A-Za-z\s]+$/.test(value)) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            name: "Only letters and spaces are allowed.",
+          }));
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            name: "", // Limpiar el mensaje de error si el valor es válido.
+          }));
+        }
+        break;
+      case "description":
+        if (value === "") {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            description: "This can't be empty!",
+          }));
+        } else if (value.length > 1000) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            description: "Description must be 1000 characters or less.",
+          }));
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            description: "", // Limpiar el mensaje de error si el valor es válido.
+          }));
+        }
+        break;
       case "platforms":
         if (selectedPlatforms.length === 0) {
-          setErrors({ ...errors, platforms: "Select at least one platform!" });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            platforms: "Select at least one platform!",
+          }));
         } else {
-          setErrors({ ...errors, platforms: "You've selected platforms." });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            platforms: "You've selected platforms.", // Puedes limpiarlo si lo deseas
+          }));
         }
         break;
       case "released_date":
@@ -98,22 +126,34 @@ function FormPage() {
         break;
       case "rating":
         if (value === "") {
-          setErrors({ ...errors, rating: "This can't be empty!" });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            rating: "This can't be empty!",
+          }));
         } else if (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 10) {
-          setErrors({ ...errors, rating: "Invalid rating value!" });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            rating: "Invalid rating value!",
+          }));
         } else {
-          setErrors({ ...errors, rating: "" });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            rating: "", // Limpiar el mensaje de error si el valor es válido.
+          }));
         }
         break;
       case "genres":
         if (selectedGenres.length === 0) {
-          setErrors({ ...errors, genres: "Select at least one genre!" });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            genres: "Select at least one genre!",
+          }));
         } else {
-          setErrors({ ...errors, genres: "" });
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            genres: "", // Limpiar el mensaje de error si se selecciona al menos un género.
+          }));
         }
-        break;
-      case "image":
-        // Puedes implementar una validación de URL o accesibilidad de imagen aquí si es necesario.
         break;
       default:
         break;
@@ -121,7 +161,7 @@ function FormPage() {
   };
 
   // Función para deshabilitar el botón Enviar
-  const disableFunction = () => {
+/*   const disableFunction = () => {
     for (let error in errors) {
       if (errors[error] !== "") return true; // Hay errores, deshabilitar.
     }
@@ -129,8 +169,10 @@ function FormPage() {
     // Verifica que todos los campos obligatorios estén completos
     if (
       state.name === "" ||
+      state.image === "" ||
+      state.description === "" ||
       state.released_date === "" ||
-      state.rating === 0 ||
+      (state.rating === 0 || state.rating === "0") ||
       selectedGenres.length === 0 ||
       selectedPlatforms.length === 0
     ) {
@@ -139,7 +181,7 @@ function FormPage() {
 
     return false; // No hay errores y todos los campos obligatorios están completos, habilitar.
   };
-
+ */
   // Manejador de envío del formulario
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -153,68 +195,72 @@ function FormPage() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>Name: </label>
-        <input name="name" onChange={handleChange} type="text" value={state.name} />
-        <div><p>{errors.name}</p></div>
-
-        <br />
-
-        <label>Image:</label>
-        <input name="image" onChange={handleChange} type="text" value={state.image} />
-
-        <br />
-
-        <label>Description:</label>
-        <input name="description" onChange={handleChange} type="text" value={state.description} />
-
-        <br />
-
-        <label>Release Date:</label>
-        <input name="released_date" onChange={handleChange} type="text" value={state.released_date} />
-
-        <br />
-
-        <label>Rating:</label>
-        <input name="rating" onChange={handleChange} type="text" value={state.rating} />
-        <br />
-
-        <label>Platforms:</label>
-        {allPlatforms.map((platform) => (
-          <div key={platform.id}>
-            <input
-              type="checkbox"
-              name="platforms"
-              value={platform.name} // Utiliza el ID como valor del checkbox
-              checked={selectedPlatforms.includes(platform.name)} // Comprueba si el ID está en los seleccionados
-              onChange={handleChange}
-            />
-            {platform.name}
+      <form className={style.formPage} onSubmit={handleSubmit}>
+        <div className={style.new}>
+          <div className={style.form}>
+            <label className={style.label}>Name: </label>
+            <input name="name" onChange={handleChange} type="text" value={state.name} />
+            <div><p className={style.error}>{errors.name}</p></div>
+  
+            <br />
+  
+            <label className={style.label}>Image:</label>
+            <input name="image" onChange={handleChange} type="text" value={state.image} />
+  
+            <br />
+  
+            <label className={style.label}>Description:</label>
+            <input name="description" onChange={handleChange} type="text" value={state.description} />
+  
+            <br />
+  
+            <label className={style.label}>Release Date:</label>
+            <input name="released_date" onChange={handleChange} type="text" value={state.released_date} />
+  
+            <br />
+  
+            <label className={style.label}>Rating:</label>
+            <input name="rating" onChange={handleChange} type="text" value={state.rating} />
+            <br />
           </div>
-        ))}
-
-        <br />
-
-        <label>Genres:</label>
-        {allGenres.map((genre) => (
-          <div key={genre.id}>
-            <input
-              type="checkbox"
-              name="genres"
-              value={genre.name}
-              checked={selectedGenres.includes(genre.name)}
-              onChange={handleChange}
-            />
-            {genre.name}
+  
+          <div className={style.checkBoxes}>
+            <div className={style.platforms}>
+              <h3 className={style.header}>Platforms:</h3>
+              {allPlatforms.map((platform) => (
+                <div key={platform.id}>
+                  <input
+                    type="checkbox"
+                    name="platforms"
+                    value={platform.name}
+                    checked={selectedPlatforms.includes(platform.name)}
+                    onChange={handleChange}
+                  />
+                  {platform.name}
+                </div>
+              ))}
+            </div>
+            <br />
+  
+            <div className={style.genres}>
+              <h3 className={style.header}>Genres:</h3>
+              {allGenres.map((genre) => (
+                <div key={genre.id}>
+                  <input
+                    type="checkbox"
+                    name="genres"
+                    value={genre.name}
+                    checked={selectedGenres.includes(genre.name)}
+                    onChange={handleChange}
+                  />
+                  {genre.name}
+                </div>
+              ))}
+              {selectedGenres.map((g) => <span key={g}>{g}--</span>)}
+            </div>
           </div>
-        ))}
-
-        <br />
-        <div>
-          {selectedGenres.map((g) => <span key={g}>{g}--</span>)}
         </div>
-
-        <input disabled={disableFunction()} type="submit" />
+        <input className={style.button} type="submit" />
       </form>
     </div>
   );

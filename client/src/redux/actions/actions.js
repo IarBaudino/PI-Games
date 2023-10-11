@@ -6,6 +6,7 @@ export const GET_GAMES = "GET_GAMES"
 export const GET_GAME_ID = "GET_GAME_ID"
 export const GET_GENRES = "GET_GENRES"
 export const GET_PLATFORMS = "GET_PLATFORMS"
+export const PAGINATED = "PAGINATED"
 
 export function getGames() {
   return async function (dispatch) {
@@ -17,7 +18,7 @@ export function getGames() {
         payload: videoGames
       })
     } catch (error) {
-
+      alert(error.response.data.error)
     }
 
   }
@@ -81,4 +82,18 @@ export function postGame(state) {
     }
 
   }
+}
+
+
+export function paginatedGames(order) {
+  return (dispatch) => {
+    try {
+      dispatch({
+        type: PAGINATED,
+        payload: order
+      });
+    } catch (error) {
+      alert(error.response.data.error);
+    }
+  };
 }

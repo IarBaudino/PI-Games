@@ -28,22 +28,3 @@ const mapGames = (games) => {
 
 module.exports = mapGames;
 
-/* 
-
-const mapGames = (games) => {
-    return games.map((game) => {
-        return {
-            
-            id: game.id,
-            name: game.name,
-            description: game.description,
-            image: game.background_image,
-            genres: game.genres?.map((genre) => genre.name),
-            platforms: game.platforms,
-            released: game.released,
-            rating: game.rating
-        }
-    })
-}
-
-module.exports =  mapGames ; */

@@ -1,46 +1,54 @@
-.formContainer {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
+.formPage{
+  height: vh;
+  width: 80vw;
+  display: flex;
+  position: relative;
   
-  .formGroup {
-    margin-bottom: 20px;
-  }
+}
+
+.form {
+  text-align: left; /* Alinea el texto a la izquierda */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente en el formulario */
+  gap: 5px; /* Ajusta el espacio vertical entre elementos */
+}
+
+.checkBoxes{
+  display: flex;
+  height: 75%;
+  width: 100%;
   
-  .label {
-    display: block;
-    font-weight: bold;
-  }
+}
+
+.platforms{
+  overflow: hidden;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.genres{
+  overflow: hidden;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.button{
+  align-self: flex-end;
   
-  .inputText {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 4px;
-  }
+  bottom: 0;
   
-  .checkboxGroup {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .checkboxLabel {
-    display: flex;
-    align-items: center;
-    text-align: left;
-  }
-  
-  /* Estilos para alinear y separar los campos en una columna */
-  .label {
-    margin-top: 10px;
-  }
-  
-  .checkboxGroup {
-    flex-direction: column;
-  }
+}
+
+.new{
+  height: 90%;
+  width: 100%;
+}

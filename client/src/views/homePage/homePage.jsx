@@ -1,38 +1,39 @@
-/* HOME PAGE | la página principal de tu SPA debe contener:
-
-SearchBar: un input de búsqueda para encontrar videojuegos por nombre.
-Sector en el que se vea un listado de cards con los videojuegos. Al iniciar deberá cargar los primeros resultados obtenidos desde la ruta GET /videogames y deberá mostrar su:
-Imagen.
-Nombre.
-Géneros.
-Cuando se le hace click a una Card deberá redirigir al detalle de ese videojuego específico.
-Botones/Opciones para filtrar por género, y por si su origen es de la API o de la base de datos (creados por nosotros desde el formulario).
-Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating.
-Paginado: el listado de videojuegos se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 15 videojuegos por página. */
-import { useDispatch} from "react-redux";
+ import { useDispatch } from "react-redux";
 import { useEffect } from 'react';
-import { getGames } from "../../redux/actions/actions";
+import { useSelector } from 'react-redux';
+import { getGames, getGenres, paginatedGames } from "../../redux/actions/actions";
 
 import Cards from "../../components/cards/cards";
 
-import Style from "../homePage/homePage.module.css"
+import style from "../homePage/homePage.module.css"
 
 
 function HomePage() {
     const dispatch = useDispatch();
-    /* const allGames = useSelector(state => state.allVideogames); */
+    const allGames = useSelector(state => state.allVideogames);
 
 
     useEffect(() => {
         dispatch(getGames());
+        dispatch(getGenres());
     }, [dispatch]);
-    
+
+    const paginate=(event) => {
+        dispatch(paginatedGames(event.target.name))
+        event.preventDefault()
+    }
+
     return (
-        <div className={Style.home}>
-            
-            <h2 className={Style.titleone}>bienvenides</h2>
-            <div className="cardcontainer">
-                <Cards />
+        <div className={style.background}>
+            <div>
+                <button name="prev" onClick={paginate}>Prev</button>
+                <button name="next" onClick={paginate}>Next</button>
+            </div>
+            <div className={style.home}>
+                <h2 className={style.titleone}>WELLCOME!</h2>
+                <div className={style.cardcontainer}>
+                    <Cards allGames={allGames} />
+                </div>
             </div>
         </div>
     );
