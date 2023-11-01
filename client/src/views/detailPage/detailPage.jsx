@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useParams } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getById } from '../../redux/actions/actions';
+
 
 import Card  from "../../components/card/card"
 
@@ -8,6 +9,8 @@ import Card  from "../../components/card/card"
 //ACA TENGO QUE DESPACHAR UNA ACTION QUE LLAMA AL ENDPOINT DE BUSQUEDA POR ID.
 
 function DetailPage() {
+
+  const params = useParams()
   const dispatch = useDispatch()
 
   const game  = useSelector((state) => state.gameId)

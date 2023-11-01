@@ -1,17 +1,18 @@
 .cardslist {
     display: flex;
-    height:800px;
-    width: 90vw;
+    flex-direction: row;
     overflow: auto;
     flex-wrap: wrap; 
     justify-content: space-between; 
     padding: 20px; 
+    overflow: hidden;
 }
 
 .cardcontainer {
+    
     background-color: #95dada;
-    height:250px;
-    width: 250px;
+    height: auto;
+    width:auto;
     border: 1px solid grey;
     border-radius: 15px;
     padding: 25px;
@@ -22,4 +23,6 @@
     transition: transform 0.25s ease-out;
     margin-bottom: 20px; 
     flex-grow: 1; 
+    overflow: auto;
+ 
 }

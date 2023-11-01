@@ -25,12 +25,12 @@ function HomePage() {
 
     return (
         <div className={style.background}>
-            <div>
+            <div className={style.navbar}>
                 <button name="prev" onClick={paginate}>Prev</button>
                 <button name="next" onClick={paginate}>Next</button>
             </div>
             <div className={style.home}>
-                <h2 className={style.titleone}>WELLCOME!</h2>
+                <h2 className={style.titleone}>WELCOME!</h2>
                 <div className={style.cardcontainer}>
                     <Cards allGames={allGames} />
                 </div>

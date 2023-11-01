@@ -14,9 +14,7 @@ const { API_KEY } = process.env
 const getAllGames = async (name) => {
     let gamesDb = [];
     let gamesApi = [];
-
     
-
     if (name) {
         gamesDb = await Videogame.findAll({
             include: Genres,
@@ -29,8 +27,22 @@ const getAllGames = async (name) => {
     } else {
         gamesDb = await Videogame.findAll({ include: Genres });
         
-        const response = await axios.get(`${URL}?key=${API_KEY}&page_size=100`);
-        gamesApi = response.data.results;
+        const gamesToFetch = 100; // Número de juegos que deseas obtener
+        let page = 1; // Número de página inicial
+        let gamesFetched = 0; // Contador de juegos obtenidos
+    
+        while (gamesFetched < gamesToFetch) {
+            const response = await axios.get(`${URL}?key=${API_KEY}&page=${page}&page_size=40`); // Solicita 40 juegos por página
+            const fetchedGames = response.data.results;
+            gamesApi = gamesApi.concat(fetchedGames);
+            gamesFetched += 40; // Incrementa el contador
+    
+            if (!response.data.next || gamesFetched >= gamesToFetch) {
+                break; // Detener si no hay más páginas o ya tienes suficientes juegos
+            }
+    
+            page++; // Pasa a la siguiente página
+        }
     }
     const allVideoGames = gamesDb.concat(gamesApi)
     const games = mapGames(allVideoGames) // aca utilizo mi funcion aux para mapear los games y solo traer la info que quiero

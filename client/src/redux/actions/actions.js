@@ -7,6 +7,7 @@ export const GET_GAME_ID = "GET_GAME_ID"
 export const GET_GENRES = "GET_GENRES"
 export const GET_PLATFORMS = "GET_PLATFORMS"
 export const PAGINATED = "PAGINATED"
+export const SEARCH_GAME = "SEARCH_GAME"
 
 export function getGames() {
   return async function (dispatch) {
@@ -91,6 +92,20 @@ export function paginatedGames(order) {
       dispatch({
         type: PAGINATED,
         payload: order
+      });
+    } catch (error) {
+      alert(error.response.data.error);
+    }
+  };
+}
+
+export function searchGames(name) {
+  return async function (dispatch){
+    try {
+      const response=await axios.get(`http://localhost:3001/games/${name}`)
+      dispatch({
+        type: SEARCH_GAME,
+        payload: search
       });
     } catch (error) {
       alert(error.response.data.error);

@@ -54,6 +54,10 @@ function rootReducer(state = initialState, action) {
                 currentPage: next_page,
             };
 
+        case SEARCH_GAME:
+
+        
+
 
 
         default:

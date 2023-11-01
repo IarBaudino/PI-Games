@@ -1,18 +1,17 @@
-
-
 .cardcontainer {
-    border:solid green;
-    background-color: #1f2020;
+    /* border:solid green; */
+    background-color: #1f20204d;
     width: 250px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.521);
     border-radius: 15px;
     padding: 25px;
-    cursor: pointer;
+    cursor:pointer;
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
     margin-bottom: 20px; /* Espacio entre las tarjetas */
+    overflow: hidden;
 }
 
 .cardcontainer:hover {
@@ -21,5 +20,5 @@
 
 .img {
     height: 150px;
-    width: 250px;
+    width: 230px;
 }
